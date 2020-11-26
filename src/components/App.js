@@ -1,17 +1,25 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-//JSX記法
-// class App extends Component {
-//   render() {
-//     return <div>Hello, world!</div>;
-//   }
-// }
+import { increment, decrement } from "../actions";
 
-//JS記法
 class App extends Component {
   render() {
-    return React.createElement("div", null, "Hello, world!!");
+    const props = this.props;
+    return (
+      <>
+        <div>count: {props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
+      </>
+    );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({ value: state.count.value });
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
