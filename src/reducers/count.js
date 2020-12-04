@@ -2,6 +2,7 @@ import { INCREMENT, DECREMENT } from "../actions";
 
 const initinalState = { value: 0 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initinalState, action) => {
   switch (action.type) {
     case INCREMENT:
